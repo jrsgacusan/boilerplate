@@ -1,8 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtracPlugin = require("mini-css-extract-plugin");
+const sass = require("sass");
 
 module.exports = {
-  entry: path.resolve(__dirname, "..", "./src/index.tsx"),
+  entry: path.resolve(__dirname, "..", "./src/typescript/index.tsx"),
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -15,6 +17,19 @@ module.exports = {
           {
             loader: "babel-loader",
           },
+        ],
+      },
+      {
+        test: /\.(css|scss)$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+          "sass-loader",
         ],
       },
     ],
