@@ -6,6 +6,7 @@ module.exports = {
   devtool: "cheap-module-source-map",
   devServer: {
     hot: true,
+    open: true,
   },
   plugins: [
     new webpack.DefinePlugin({
