@@ -1,11 +1,12 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, '..', './src/typescript/index.tsx'),
+  entry: {
+    main: path.resolve(__dirname, '..', './src/typescript/index.tsx'),
+    components: path.resolve(__dirname, '..', './src/typescript/App.tsx'),
+  },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   module: {
     rules: [
@@ -19,19 +20,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.(css|scss)$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-          'sass-loader',
-        ],
-      },
-      {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
       },
@@ -41,17 +29,9 @@ module.exports = {
       },
     ],
   },
-  output: {
-    path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './src/index.html'),
-    }),
-    // new CopyPlugin({
-    //   patterns: [{ from: 'source', to: 'dest' }],
-    // }),
-  ],
 };
