@@ -1,5 +1,5 @@
-import Image from "../images/random.png";
-import ClickCounter from "./components/ClickCounter";
+import Image from '../images/random.png'
+import ClickCounter from './components/ClickCounter'
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <img src={Image} alt="test" />
       <h1>React test s</h1>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App
